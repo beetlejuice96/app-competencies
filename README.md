@@ -37,3 +37,5 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 integracion supabase
 https://whateverittech.medium.com/secure-your-nextjs-app-a-simple-guide-to-supabase-auth-4e69cf9ecf99
+
+https://github.com/vercel/nextjs-subscription-payments/blob/main/README.md
