@@ -1,5 +1,5 @@
 import { NextPage } from "next";
 
-const Page: NextPage = () => {
-  return <div>Protected Page</div>;
-};
+export default function Page(): React.JSX.Element {
+  return <div>Page</div>;
+}

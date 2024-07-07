@@ -1,3 +1,5 @@
+"use client";
+
 import { config } from "@/config";
 import UseUser from "@/hooks/use-user";
 import { logger } from "@/lib/default-logger";
