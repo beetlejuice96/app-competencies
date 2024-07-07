@@ -9,8 +9,6 @@ import { paths } from "@/paths";
 import { toast } from "@/core/toaster";
 import Image from "next/image";
 
-// import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
-
 interface OAuthProvider {
   id: "google";
   name: string;
