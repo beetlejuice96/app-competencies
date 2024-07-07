@@ -44,7 +44,7 @@ const SignInForm: FC = () => {
         paths.auth.callback.pkce,
         window.location.origin
       );
-      redirectToUrl.searchParams.set("next", paths.home);
+      redirectToUrl.searchParams.set("next", paths.platform.start);
 
       const { data, error } = await supabaseClient.auth.signInWithOAuth({
         provider: providerId,

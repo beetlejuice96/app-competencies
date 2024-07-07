@@ -18,4 +18,4 @@ export async function middleware(req: NextRequest): Promise<NextResponse> {
 }
 
 //TODO: averiguar bien como configurar esto.
-export const config = { matcher: ["/"] };
+export const config = { matcher: ["/platform"] };

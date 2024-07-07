@@ -1,3 +1,4 @@
+import GuestGuard from "@/auth/guest-guard";
 import SignInForm from "@/auth/sign-in/sign-in-form";
 import { config } from "@/config";
 import { Metadata } from "next";
@@ -11,10 +12,9 @@ export const metadata: Metadata = {
 export default function SignInPage(): React.JSX.Element {
   //TODO: agregar guest guard
   //TODO: cuando se le de estilo agregar un layout como devias kit
-  // TODO: IMPLEMENTAR https://www.freecodecamp.org/news/set-up-authentication-in-apps-with-supabase/
   return (
-    <>
+    <GuestGuard>
       <SignInForm />
-    </>
+    </GuestGuard>
   );
 }

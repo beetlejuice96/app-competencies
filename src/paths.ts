@@ -1,3 +1,5 @@
+import { start } from "repl";
+
 export const paths = {
   home: "/",
   auth: {
@@ -7,5 +9,8 @@ export const paths = {
       implicit: "/auth/callback",
       pkce: "/auth/callback",
     },
+  },
+  platform: {
+    start: "/platform",
   },
 };

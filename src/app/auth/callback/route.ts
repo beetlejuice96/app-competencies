@@ -20,6 +20,7 @@ export const dynamic = "force-dynamic";
 export async function GET(req: NextRequest): Promise<NextResponse> {
   const { searchParams, origin } = req.nextUrl;
 
+  console.log("searchParams", searchParams);
   if (searchParams.get("error")) {
     return NextResponse.json({
       error: searchParams.get("error_description") || "Something went wrong",
@@ -28,7 +29,7 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
 
   const code = searchParams.get("code");
 
-  console.log("code", code)
+  console.log("code", code);
   if (!code) {
     return NextResponse.json({ error: "Code is missing" });
   }
@@ -57,7 +58,7 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
     return NextResponse.json({ error: "Something went wrong" });
   }
 
-  const next = searchParams.get("next") || paths.home;
+  const next = searchParams.get("next") || paths.platform.start;
 
   return NextResponse.redirect(new URL(next, origin));
 }
