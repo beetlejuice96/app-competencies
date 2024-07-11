@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { paths } from "@/paths";
 import { toast } from "@/core/toaster";
 import Image from "next/image";
+import SignInEmailForm from "./sign-in-email-form";
 
 interface OAuthProvider {
   id: "google";
@@ -24,13 +25,10 @@ const schema = zod.object({
   password: zod.string().min(1, { message: "Password is required" }),
 });
 
-type Values = zod.infer<typeof schema>;
-
-const defaultValues = { email: "", password: "" } satisfies Values;
-
 const SignInForm: FC = () => {
   const [supabaseClient] = useState<SupabaseClient>(createSupabaseClient());
   const [isPending, setIsPending] = useState<boolean>(false);
+  const [switchSignIn, setSwitchSignIn] = useState<boolean>(false);
 
   const router = useRouter();
 
@@ -60,35 +58,6 @@ const SignInForm: FC = () => {
     [supabaseClient]
   );
 
-  //   const onSubmit = useCallback(
-  //     async (values: Values): Promise<void> => {
-  //       setIsPending(true);
-
-  //       const { error } = await supabaseClient.auth.signInWithPassword({
-  //         email: values.email,
-  //         password: values.password,
-  //       });
-
-  //       if (error) {
-  //         if (error.message.includes("Email not confirmed")) {
-  //           // You should resend the verification email.
-  //           // For the sake of simplicity, we will just redirect to the confirmation page.
-  //           const searchParams = new URLSearchParams({ email: values.email });
-  //           router.push(
-  //             `${paths.auth.supabase.signUpConfirm}?${searchParams.toString()}`
-  //           );
-  //         } else {
-  //           //   setError("root", { type: "server", message: error.message });
-  //           setIsPending(false);
-  //         }
-  //       } else {
-  //         // UserProvider will handle Router refresh
-  //         // After refresh, GuestGuard will handle the redirect
-  //       }
-  //     },
-  //     [supabaseClient, router]
-  //   );
-
   //TODO: agregar guest guard
   //TODO: cuando se le de estilo agregar un layout como devias kit
   // TODO: IMPLEMENTAR https://www.freecodecamp.org/news/set-up-authentication-in-apps-with-supabase/
@@ -97,6 +66,8 @@ const SignInForm: FC = () => {
       <h1 className="text-2xl font-bold text-center" style={{ color: "black" }}>
         Sign in
       </h1>
+
+      <SignInEmailForm />
       <div
         className="flex flex-col items-center justify-center w-full p-4 space-y-4 bg-white rounded-md shadow-md"
         style={{ maxWidth: "24rem" }}
