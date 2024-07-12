@@ -1,3 +1,4 @@
+import { sign } from "crypto";
 import { start } from "repl";
 
 export const paths = {
@@ -5,6 +6,7 @@ export const paths = {
   auth: {
     signIn: "/auth/sign-in",
     signUp: "/auth/sign-up",
+    signUpConfirm: "/auth/sign-up-confirm",
     callback: {
       implicit: "/auth/callback",
       pkce: "/auth/callback",
