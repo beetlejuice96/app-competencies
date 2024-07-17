@@ -7,6 +7,7 @@ export const paths = {
     signIn: "/auth/sign-in",
     signUp: "/auth/sign-up",
     signUpConfirm: "/auth/sign-up-confirm",
+    signUpOtp: "/auth/sign-up-otp",
     callback: {
       implicit: "/auth/callback",
       pkce: "/auth/callback",

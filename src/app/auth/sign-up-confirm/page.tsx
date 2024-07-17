@@ -1,6 +1,8 @@
 import { config } from "@/config";
 import { Metadata } from "next";
 
+export const runtime = "edge";
+
 export const metadata: Metadata = {
   title: `Sign up confirm | Supabase | Auth | ${config.site.name}`,
 };

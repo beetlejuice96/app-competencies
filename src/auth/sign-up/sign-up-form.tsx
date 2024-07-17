@@ -6,6 +6,7 @@ import { paths } from "@/paths";
 import { toast } from "@/core/toaster";
 import Image from "next/image";
 import SignUpEmailForm from "./sign-up-email-form";
+import SignUpPhoneForm from "./sign-up-phone-form";
 
 interface OAuthProvider {
   id: "google";
@@ -20,6 +21,7 @@ const oAuthProviders = [
 const SignUpForm: React.FC = () => {
   const [supabaseClient] = useState(createSupabaseClient());
   const [isPending, setIsPending] = useState<boolean>(false);
+  const [isEmailForm, setIsEmailForm] = useState<boolean>(false);
 
   const onAuth = useCallback(
     async (providerId: OAuthProvider["id"]): Promise<void> => {
@@ -46,16 +48,34 @@ const SignUpForm: React.FC = () => {
     },
     [supabaseClient]
   );
+
   return (
     <div className="flex flex-col items-center justify-center w-full h-full p-4 space-y-4 bg-gray-100">
       <h1 className="text-2xl font-bold text-center" style={{ color: "black" }}>
         Sign up
       </h1>
-      <SignUpEmailForm />
+      {isEmailForm ? <SignUpEmailForm /> : <SignUpPhoneForm />}
       <div
         className="flex flex-col items-center justify-center w-full p-4 space-y-4 bg-white rounded-md shadow-md"
         style={{ maxWidth: "24rem" }}
       >
+        {isEmailForm ? (
+          <button
+            className="flex items-center justify-center w-full px-4 py-2 space-x-2 text-white bg-blue-500 rounded-md"
+            onClick={() => setIsEmailForm(false)}
+            disabled={isPending}
+          >
+            Sign up with Phone
+          </button>
+        ) : (
+          <button
+            className="flex items-center justify-center w-full px-4 py-2 space-x-2 text-white bg-blue-500 rounded-md"
+            onClick={() => setIsEmailForm(true)}
+            disabled={isPending}
+          >
+            Sign up with Email
+          </button>
+        )}
         {oAuthProviders.map((provider) => (
           <button
             className="flex items-center justify-center w-full px-4 py-2 space-x-2 text-white bg-blue-500 rounded-md"

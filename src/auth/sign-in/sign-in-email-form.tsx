@@ -7,6 +7,7 @@ import { createClient as createSupabaseClient } from "@/lib/supabase/client";
 import { z as zod } from "zod";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { paths } from "@/paths";
 // import { paths } from "@/paths";
 
 const schema = zod.object({
@@ -46,10 +47,8 @@ const SignInEmailForm = () => {
           // You should resend the verification email.
           // For the sake of simplicity, we will just redirect to the confirmation page.
           const searchParams = new URLSearchParams({ email: values.email });
-          console.log(searchParams.toString());
-          //   router.push(
-          //     `${paths.auth.signUpConfirm}?${searchParams.toString()}`
-          //   );
+          // console.log(searchParams.toString());
+          router.push(`${paths.auth.signUpConfirm}?${searchParams.toString()}`);
         } else {
           setError("root", { type: "server", message: error.message });
           setIsPending(false);

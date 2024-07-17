@@ -9,6 +9,8 @@ import { createClient } from "@/lib/supabase/server";
 
 export const dynamic = "force-dynamic";
 
+export const runtime = "edge";
+
 // NOTE: If you have a proxy in front of this app
 //  the request origin might be a local address.
 //  Consider using `config.site.url` from `@/config` instead.
