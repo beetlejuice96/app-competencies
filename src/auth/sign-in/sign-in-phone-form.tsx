@@ -56,7 +56,7 @@ const SignInPhoneForm = () => {
         // After refresh, GuestGuard will handle the redirect
       }
     },
-    [supabaseClient, router, setError]
+    [supabaseClient, setError]
   );
 
   return (
