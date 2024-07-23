@@ -78,10 +78,7 @@ const SignInEmailForm = () => {
         />
         {errors.email && <span>{errors.email.message}</span>}
       </div>
-      <div
-        className="flex flex-col space-y-2"
-        // style={{ display: "flex", flexDirection: "column" }}
-      >
+      <div className="flex flex-col space-y-2">
         <Controller
           name="password"
           control={control}

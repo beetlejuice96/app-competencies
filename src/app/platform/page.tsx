@@ -1,5 +1,10 @@
-import { NextPage } from "next";
+import SignOut from "@/auth/sign-out/sign-out";
 
 export default function Page(): React.JSX.Element {
-  return <div>Page</div>;
+  return (
+    <div>
+      Page
+      <SignOut />
+    </div>
+  );
 }

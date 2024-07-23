@@ -24,7 +24,7 @@ const GuestGuard: FC<GuestGuardProps> = ({ children }) => {
     }
 
     if (user) {
-      router.replace(paths.home);
+      router.replace(paths.platform.start);
       return;
     }
     setIsChecking(false);

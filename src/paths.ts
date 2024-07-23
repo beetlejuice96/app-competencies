@@ -1,6 +1,3 @@
-import { sign } from "crypto";
-import { start } from "repl";
-
 export const paths = {
   home: "/",
   auth: {
