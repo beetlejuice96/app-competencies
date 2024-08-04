@@ -60,7 +60,7 @@ const SignUpPhoneForm = () => {
       } else {
         // UserProvider will handle Router refresh
         // After refresh, GuestGuard will handle the redirect
-        router.push(`${paths.auth.signUpOtp}`);
+        router.push(`${paths.auth.signUpOtp}?phone=${values.phone}`);
       }
       setIsPending(false);
     },
@@ -68,41 +68,51 @@ const SignUpPhoneForm = () => {
   );
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col space-y-4">
-      <div className="flex flex-col space-y-2">
-        <Controller
-          name="phone"
-          control={control}
-          render={({ field }) => (
-            <input
-              {...field}
-              type="number"
-              placeholder="Phone"
-              disabled={isPending}
-            />
-          )}
-        />
-        {errors.phone && <span>{errors.phone.message}</span>}
-      </div>
-      <div className="flex flex-col space-y-2">
-        <Controller
-          name="password"
-          control={control}
-          render={({ field }) => (
-            <input
-              {...field}
-              type="password"
-              placeholder="Password"
-              disabled={isPending}
-            />
-          )}
-        />
-        {errors.password && <span>{errors.password.message}</span>}
-      </div>
-      <button type="submit" disabled={isPending} className="btn btn-primary">
-        {isPending ? "Signing up..." : "Sign up"}
-      </button>
-    </form>
+    <>
+      <h1 className="text-2xl font-bold text-center" style={{ color: "black" }}>
+        Sign up with phone
+      </h1>
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="flex flex-col space-y-4"
+      >
+        <div className="flex flex-col space-y-2">
+          <Controller
+            name="phone"
+            control={control}
+            render={({ field }) => (
+              <input
+                {...field}
+                type="number"
+                className="input w-full max-w-xs"
+                placeholder="Phone"
+                disabled={isPending}
+              />
+            )}
+          />
+          {errors.phone && <span>{errors.phone.message}</span>}
+        </div>
+        <div className="flex flex-col space-y-2">
+          <Controller
+            name="password"
+            control={control}
+            render={({ field }) => (
+              <input
+                {...field}
+                type="password"
+                className="input w-full max-w-xs"
+                placeholder="Password"
+                disabled={isPending}
+              />
+            )}
+          />
+          {errors.password && <span>{errors.password.message}</span>}
+        </div>
+        <button type="submit" disabled={isPending} className="btn">
+          {isPending ? "Signing up..." : "Sign up"}
+        </button>
+      </form>
+    </>
   );
 };
 

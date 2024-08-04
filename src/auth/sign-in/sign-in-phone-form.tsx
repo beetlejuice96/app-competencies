@@ -60,41 +60,51 @@ const SignInPhoneForm = () => {
   );
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col space-y-4">
-      <div className="flex flex-col space-y-2">
-        <Controller
-          name="phone"
-          control={control}
-          render={({ field }) => (
-            <input
-              {...field}
-              type="phone"
-              placeholder="Phone"
-              disabled={isPending}
-            />
-          )}
-        />
-        {errors.phone && <span>{errors.phone.message}</span>}
-      </div>
-      <div className="flex flex-col space-y-2">
-        <Controller
-          name="password"
-          control={control}
-          render={({ field }) => (
-            <input
-              {...field}
-              type="password"
-              placeholder="Password"
-              disabled={isPending}
-            />
-          )}
-        />
-        {errors.password && <span>{errors.password.message}</span>}
-      </div>
-      <button type="submit" disabled={isPending}>
-        Sign in
-      </button>
-    </form>
+    <>
+      <h1 className="text-2xl font-bold text-center" style={{ color: "black" }}>
+        Sign in with phone
+      </h1>
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="flex flex-col space-y-4"
+      >
+        <div className="flex flex-col space-y-2">
+          <Controller
+            name="phone"
+            control={control}
+            render={({ field }) => (
+              <input
+                {...field}
+                type="phone"
+                className="input w-full max-w-xs"
+                placeholder="Phone"
+                disabled={isPending}
+              />
+            )}
+          />
+          {errors.phone && <span>{errors.phone.message}</span>}
+        </div>
+        <div className="flex flex-col space-y-2">
+          <Controller
+            name="password"
+            control={control}
+            render={({ field }) => (
+              <input
+                {...field}
+                type="password"
+                className="input w-full max-w-xs"
+                placeholder="Password"
+                disabled={isPending}
+              />
+            )}
+          />
+          {errors.password && <span>{errors.password.message}</span>}
+        </div>
+        <button type="submit" disabled={isPending}>
+          Sign in
+        </button>
+      </form>
+    </>
   );
 };
 

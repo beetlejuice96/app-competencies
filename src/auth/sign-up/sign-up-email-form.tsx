@@ -79,42 +79,52 @@ const SignUpEmailForm: FC = () => {
   );
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col space-y-4">
-      <div className="flex flex-col space-y-2">
-        <Controller
-          name="email"
-          control={control}
-          render={({ field }) => (
-            <input
-              {...field}
-              type="email"
-              placeholder="Email"
-              disabled={isPending}
-            />
-          )}
-        />
-        {errors.email && <span>{errors.email.message}</span>}
-      </div>
-      <div className="flex flex-col space-y-2">
-        <Controller
-          name="password"
-          control={control}
-          render={({ field }) => (
-            <input
-              {...field}
-              type="password"
-              placeholder="Password"
-              disabled={isPending}
-            />
-          )}
-        />
-        {errors.password && <span>{errors.password.message}</span>}
-      </div>
-      <button type="submit" disabled={isPending} className="btn btn-primary">
-        {isPending ? "Signing up..." : "Sign up"}
-      </button>
-      {errors.root && <span>{errors.root.message}</span>}
-    </form>
+    <>
+      <h1 className="text-2xl font-bold text-center" style={{ color: "black" }}>
+        Sign up with email
+      </h1>
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="flex flex-col space-y-4"
+      >
+        <div className="flex flex-col space-y-2">
+          <Controller
+            name="email"
+            control={control}
+            render={({ field }) => (
+              <input
+                {...field}
+                type="email"
+                className="input w-full max-w-xs"
+                placeholder="Email"
+                disabled={isPending}
+              />
+            )}
+          />
+          {errors.email && <span>{errors.email.message}</span>}
+        </div>
+        <div className="flex flex-col space-y-2">
+          <Controller
+            name="password"
+            control={control}
+            render={({ field }) => (
+              <input
+                {...field}
+                type="password"
+                className="input w-full max-w-xs"
+                placeholder="Password"
+                disabled={isPending}
+              />
+            )}
+          />
+          {errors.password && <span>{errors.password.message}</span>}
+        </div>
+        <button type="submit" disabled={isPending} className="btn ">
+          {isPending ? "Signing up..." : "Sign up"}
+        </button>
+        {errors.root && <span>{errors.root.message}</span>}
+      </form>
+    </>
   );
 };
 

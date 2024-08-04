@@ -7,22 +7,22 @@ import { toast } from "@/core/toaster";
 import Image from "next/image";
 import SignUpEmailForm from "./sign-up-email-form";
 import SignUpPhoneForm from "./sign-up-phone-form";
-
+import { FaGoogle } from "react-icons/fa";
+import { MdOutlineEmail, MdOutlinePhone } from "react-icons/md";
 interface OAuthProvider {
   id: "google";
   name: string;
-  logo: string;
+  logo: React.ReactNode;
 }
 
 const oAuthProviders = [
-  { id: "google", name: "Google", logo: "/assets/logo-google.svg" },
+  { id: "google", name: "Google", logo: <FaGoogle size={20} /> },
 ] satisfies OAuthProvider[];
 
 const SignUpForm: React.FC = () => {
   const [supabaseClient] = useState(createSupabaseClient());
   const [isPending, setIsPending] = useState<boolean>(false);
   const [isEmailForm, setIsEmailForm] = useState<boolean>(false);
-
   const onAuth = useCallback(
     async (providerId: OAuthProvider["id"]): Promise<void> => {
       setIsPending(true);
@@ -51,46 +51,41 @@ const SignUpForm: React.FC = () => {
 
   return (
     <div className="flex flex-col items-center justify-center w-full h-full p-4 space-y-4 bg-gray-100">
-      <h1 className="text-2xl font-bold text-center" style={{ color: "black" }}>
-        Sign up
-      </h1>
       {isEmailForm ? <SignUpEmailForm /> : <SignUpPhoneForm />}
-      <div
-        className="flex flex-col items-center justify-center w-full p-4 space-y-4 bg-white rounded-md shadow-md"
-        style={{ maxWidth: "24rem" }}
-      >
+      <div className="flex items-center" style={{ maxWidth: "24rem" }}>
         {isEmailForm ? (
           <button
-            className="flex items-center justify-center w-full px-4 py-2 space-x-2 text-white bg-blue-500 rounded-md"
+            className="btn"
             onClick={() => setIsEmailForm(false)}
             disabled={isPending}
           >
-            Sign up with Phone
+            <MdOutlinePhone size={20} />
           </button>
         ) : (
           <button
-            className="flex items-center justify-center w-full px-4 py-2 space-x-2 text-white bg-blue-500 rounded-md"
+            className="btn"
             onClick={() => setIsEmailForm(true)}
             disabled={isPending}
           >
-            Sign up with Email
+            <MdOutlineEmail size={20} />
           </button>
         )}
         {oAuthProviders.map((provider) => (
           <button
-            className="flex items-center justify-center w-full px-4 py-2 space-x-2 text-white bg-blue-500 rounded-md"
+            className="btn"
             key={provider.id}
             onClick={() => onAuth(provider.id)}
             disabled={isPending}
           >
-            <Image
+            {/* <Image
               className="rounded-full"
               src={provider.logo}
               alt={provider.name}
               width={24}
               height={24}
             />
-            Sign up with {provider.name}
+            Sign up with {provider.name} */}
+            {provider.logo}
           </button>
         ))}
       </div>

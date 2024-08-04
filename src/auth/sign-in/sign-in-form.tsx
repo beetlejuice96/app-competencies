@@ -10,15 +10,17 @@ import { toast } from "@/core/toaster";
 import Image from "next/image";
 import SignInEmailForm from "./sign-in-email-form";
 import SignInPhoneForm from "./sign-in-phone-form";
+import { FaGoogle } from "react-icons/fa";
+import { MdOutlineEmail, MdOutlinePhone } from "react-icons/md";
 
 interface OAuthProvider {
   id: "google";
   name: string;
-  logo: string;
+  logo: React.ReactNode;
 }
 
 const oAuthProviders = [
-  { id: "google", name: "Google", logo: "/assets/logo-google.svg" },
+  { id: "google", name: "Google", logo: <FaGoogle size={20} /> },
 ] satisfies OAuthProvider[];
 
 const schema = zod.object({
@@ -30,8 +32,6 @@ const SignInForm: FC = () => {
   const [supabaseClient] = useState<SupabaseClient>(createSupabaseClient());
   const [isPending, setIsPending] = useState<boolean>(false);
   const [isEmailForm, setIsEmailForm] = useState<boolean>(false);
-
-  const router = useRouter();
 
   const onAuth = useCallback(
     async (providerId: OAuthProvider["id"]): Promise<void> => {
@@ -64,47 +64,41 @@ const SignInForm: FC = () => {
   // TODO: IMPLEMENTAR https://www.freecodecamp.org/news/set-up-authentication-in-apps-with-supabase/
   return (
     <div className="flex flex-col items-center justify-center w-full h-full p-4 space-y-4 bg-gray-100">
-      <h1 className="text-2xl font-bold text-center" style={{ color: "black" }}>
-        Sign in
-      </h1>
-
       {isEmailForm ? <SignInEmailForm /> : <SignInPhoneForm />}
-      <div
-        className="flex flex-col items-center justify-center w-full p-4 space-y-4 bg-white rounded-md shadow-md"
-        style={{ maxWidth: "24rem" }}
+
+      <p
+        className="text-sm text-gray-500"
+        style={{ color: "black", textAlign: "center" }}
       >
+        or sign in with
+      </p>
+      <div className="flex flex-row items-center" style={{ maxWidth: "24rem" }}>
         {isEmailForm ? (
           <button
-            className="flex items-center justify-center w-full px-4 py-2 space-x-2 text-white bg-blue-500 rounded-md"
+            // add class to icon button
+            className="btn"
             onClick={() => setIsEmailForm(false)}
             disabled={isPending}
           >
-            Sign in with Phone
+            <MdOutlinePhone size={20} />
           </button>
         ) : (
           <button
-            className="flex items-center justify-center w-full px-4 py-2 space-x-2 text-white bg-blue-500 rounded-md"
+            className="btn"
             onClick={() => setIsEmailForm(true)}
             disabled={isPending}
           >
-            Sign in with Email
+            <MdOutlineEmail size={20} />
           </button>
         )}
         {oAuthProviders.map((provider) => (
           <button
-            className="flex items-center justify-center w-full px-4 py-2 space-x-2 text-white bg-blue-500 rounded-md"
+            className="btn"
             key={provider.id}
             onClick={() => onAuth(provider.id)}
             disabled={isPending}
           >
-            <Image
-              className="rounded-full"
-              src={provider.logo}
-              alt={provider.name}
-              width={24}
-              height={24}
-            />
-            Sign in with {provider.name}
+            {provider.logo}
           </button>
         ))}
       </div>
