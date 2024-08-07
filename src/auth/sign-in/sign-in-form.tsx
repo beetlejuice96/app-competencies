@@ -4,14 +4,13 @@ import { FC, useCallback, useState } from "react";
 import { z as zod } from "zod";
 import { createClient as createSupabaseClient } from "@/lib/supabase/client";
 import { SupabaseClient } from "@supabase/supabase-js";
-import { useRouter } from "next/navigation";
 import { paths } from "@/paths";
 import { toast } from "@/core/toaster";
-import Image from "next/image";
 import SignInEmailForm from "./sign-in-email-form";
 import SignInPhoneForm from "./sign-in-phone-form";
 import { FaGoogle } from "react-icons/fa";
 import { MdOutlineEmail, MdOutlinePhone } from "react-icons/md";
+import Link from "next/link";
 
 interface OAuthProvider {
   id: "google";
@@ -63,44 +62,51 @@ const SignInForm: FC = () => {
   //TODO: cuando se le de estilo agregar un layout como devias kit
   // TODO: IMPLEMENTAR https://www.freecodecamp.org/news/set-up-authentication-in-apps-with-supabase/
   return (
-    <div className="flex flex-col items-center justify-center w-full h-full p-4 space-y-4 bg-gray-100">
-      {isEmailForm ? <SignInEmailForm /> : <SignInPhoneForm />}
+    <div className="flex flex-col items-center justify-center w-full h-full  ">
+      <h1 className="text-2xl font-bold text-center">INICIAR SESION</h1>
 
-      <p
-        className="text-sm text-gray-500"
-        style={{ color: "black", textAlign: "center" }}
-      >
-        or sign in with
-      </p>
-      <div className="flex flex-row items-center" style={{ maxWidth: "24rem" }}>
-        {isEmailForm ? (
-          <button
-            // add class to icon button
-            className="btn"
-            onClick={() => setIsEmailForm(false)}
-            disabled={isPending}
-          >
-            <MdOutlinePhone size={20} />
-          </button>
-        ) : (
-          <button
-            className="btn"
-            onClick={() => setIsEmailForm(true)}
-            disabled={isPending}
-          >
-            <MdOutlineEmail size={20} />
-          </button>
-        )}
-        {oAuthProviders.map((provider) => (
-          <button
-            className="btn"
-            key={provider.id}
-            onClick={() => onAuth(provider.id)}
-            disabled={isPending}
-          >
-            {provider.logo}
-          </button>
-        ))}
+      <div className="pt-8 space-y-4">
+        {isEmailForm ? <SignInEmailForm /> : <SignInPhoneForm />}
+
+        <div className="flex flex-row justify-center text-sm font-bold space-x-1">
+          <p>¿No tienes cuenta?</p>
+          <Link href="/auth/sign-up" className="text-accent hover:underline">
+            Registrate
+          </Link>
+        </div>
+        <div className="divider">ó</div>
+        <div className="flex flex-col items-center w-full space-y-2">
+          {isEmailForm ? (
+            <button
+              // add class to icon button
+              className="btn btn-outline btn-accent w-full hover:!text-white"
+              onClick={() => setIsEmailForm(false)}
+              disabled={isPending}
+            >
+              <MdOutlinePhone size={20} /> Registrate con Teléfono
+            </button>
+          ) : (
+            <button
+              className="btn btn-outline btn-accent w-full hover:!text-white"
+              onClick={() => setIsEmailForm(true)}
+              disabled={isPending}
+            >
+              <MdOutlineEmail size={20} />
+              Inicia sesion con Email
+            </button>
+          )}
+          {oAuthProviders.map((provider) => (
+            <button
+              // change text to white color
+              className="btn btn-outline btn-accent w-full   hover:!text-white"
+              key={provider.id}
+              onClick={() => onAuth(provider.id)}
+              disabled={isPending}
+            >
+              {provider.logo} Inicia sesion con {provider.name}
+            </button>
+          ))}
+        </div>
       </div>
     </div>
   );

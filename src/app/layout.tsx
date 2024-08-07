@@ -21,7 +21,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" data-them="pocketplay">
       <body className={inter.className}>
         <UserProvider>{children}</UserProvider>
       </body>

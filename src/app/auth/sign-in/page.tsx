@@ -1,6 +1,6 @@
+import { AuthLayout } from "@/auth/auth-layout";
 import GuestGuard from "@/auth/guest-guard";
 import SignInForm from "@/auth/sign-in/sign-in-form";
-import { SplitLayout } from "@/auth/splt-layout";
 import { config } from "@/config";
 import { Metadata } from "next";
 
@@ -11,9 +11,9 @@ export const metadata: Metadata = {
 export default function SignInPage(): React.JSX.Element {
   return (
     <GuestGuard>
-      <SplitLayout>
+      <AuthLayout>
         <SignInForm />
-      </SplitLayout>
+      </AuthLayout>
     </GuestGuard>
   );
 }
