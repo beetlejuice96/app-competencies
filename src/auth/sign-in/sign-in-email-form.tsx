@@ -62,52 +62,55 @@ const SignInEmailForm = () => {
   );
 
   return (
-    <>
-      <h1 className="text-2xl font-bold text-center" style={{ color: "black" }}>
-        Sign in with Email
-      </h1>
-
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col space-y-4"
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col space-y-4">
+      <div className="flex flex-col">
+        <div className="label pb-1">
+          <span className="label-text">Email</span>
+        </div>
+        <Controller
+          name="email"
+          control={control}
+          render={({ field }) => (
+            <input
+              {...field}
+              type="email"
+              className="input w-full max-w-xs border-secondary bg-opacity-20 bg-primary"
+              placeholder="Email"
+              disabled={isPending}
+            />
+          )}
+        />
+        {errors.email && <span className="pt-2">{errors.email.message}</span>}
+      </div>
+      <div className="flex flex-col ">
+        <div className="label pb-1">
+          <span className="label-text">Contraseña</span>
+        </div>
+        <Controller
+          name="password"
+          control={control}
+          render={({ field }) => (
+            <input
+              {...field}
+              type="password"
+              className="input w-full max-w-xs border-secondary bg-opacity-20 bg-primary"
+              placeholder="Password"
+              disabled={isPending}
+            />
+          )}
+        />
+        {errors.password && (
+          <span className="pt-2">{errors.password.message}</span>
+        )}
+      </div>
+      <button
+        type="submit"
+        disabled={isPending}
+        className="btn btn-accent text-white shadow-[0px_0px_30px_rgba(123,44,191,0.8)] hover:shadow-[0px_0px_30px_rgba(123,44,191,0.8)]"
       >
-        <div className="flex flex-col space-y-2">
-          <Controller
-            name="email"
-            control={control}
-            render={({ field }) => (
-              <input
-                {...field}
-                type="email"
-                className="input w-full max-w-xs"
-                placeholder="Email"
-                disabled={isPending}
-              />
-            )}
-          />
-          {errors.email && <span>{errors.email.message}</span>}
-        </div>
-        <div className="flex flex-col space-y-2">
-          <Controller
-            name="password"
-            control={control}
-            render={({ field }) => (
-              <input
-                {...field}
-                type="password"
-                className="input w-full max-w-xs"
-                placeholder="Password"
-                disabled={isPending}
-              />
-            )}
-          />
-          {errors.password && <span>{errors.password.message}</span>}
-        </div>
-        <button type="submit" disabled={isPending}>
-          Sign in
-        </button>
-      </form>
-    </>
+        Iniciar sesión
+      </button>
+    </form>
   );
 };
 

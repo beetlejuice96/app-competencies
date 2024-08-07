@@ -9,6 +9,7 @@ import SignUpEmailForm from "./sign-up-email-form";
 import SignUpPhoneForm from "./sign-up-phone-form";
 import { FaGoogle } from "react-icons/fa";
 import { MdOutlineEmail, MdOutlinePhone } from "react-icons/md";
+import Link from "next/link";
 interface OAuthProvider {
   id: "google";
   name: string;
@@ -50,8 +51,16 @@ const SignUpForm: React.FC = () => {
   );
 
   return (
-    <div className="flex flex-col items-center justify-center w-full h-full p-4 space-y-4 bg-gray-100">
+    <div className="flex flex-col items-center justify-center w-full h-full">
+      <h1 className="text-2xl font-bold text-center">INICIAR SESION</h1>
+
       {isEmailForm ? <SignUpEmailForm /> : <SignUpPhoneForm />}
+      <div className="flex flex-row justify-center text-sm font-bold space-x-1">
+        <p>¿Ya tienes cuenta?</p>
+        <Link href="/auth/sign-in" className="text-accent hover:underline">
+          Inicia sesión
+        </Link>
+      </div>
       <div className="flex items-center" style={{ maxWidth: "24rem" }}>
         {isEmailForm ? (
           <button
