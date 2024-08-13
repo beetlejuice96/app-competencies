@@ -3,7 +3,7 @@ import SignOut from "@/auth/sign-out/sign-out";
 export default function Page(): React.JSX.Element {
   return (
     <div className="w-full h-full flex flex-col justify-center items-center space-y-2">
-      <div className="card bg-base-100 w-96 shadow-xl">
+      {/* <div className="card bg-base-100 w-96 shadow-xl">
         <figure>
           <img
             src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
@@ -33,9 +33,9 @@ export default function Page(): React.JSX.Element {
             <button className="btn btn-primary">Buy Now</button>
           </div>
         </div>
-      </div>
+      </div> */}
 
-      {/* <SignOut /> */}
+      <SignOut />
     </div>
   );
 }

@@ -97,7 +97,6 @@ const SignInForm: FC = () => {
           )}
           {oAuthProviders.map((provider) => (
             <button
-              // change text to white color
               className="btn btn-outline btn-accent w-full   hover:!text-white"
               key={provider.id}
               onClick={() => onAuth(provider.id)}

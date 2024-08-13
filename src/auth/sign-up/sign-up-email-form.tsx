@@ -6,6 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
 import { paths } from "@/paths";
 
+//TODO: hacer que repita la contrasenia
 const schema = zod.object({
   email: zod.string().min(1, { message: "Email is required" }).email(),
   password: zod
@@ -80,14 +81,14 @@ const SignUpEmailForm: FC = () => {
 
   return (
     <>
-      <h1 className="text-2xl font-bold text-center" style={{ color: "black" }}>
-        Sign up with email
-      </h1>
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col space-y-4"
       >
-        <div className="flex flex-col space-y-2">
+        <div className="flex flex-col">
+          <div className="label pb-1">
+            <span className="label-text">Email</span>
+          </div>
           <Controller
             name="email"
             control={control}
@@ -95,15 +96,18 @@ const SignUpEmailForm: FC = () => {
               <input
                 {...field}
                 type="email"
-                className="input w-full max-w-xs"
+                className="input w-full max-w-xs border-secondary bg-opacity-20 bg-primary"
                 placeholder="Email"
                 disabled={isPending}
               />
             )}
           />
-          {errors.email && <span>{errors.email.message}</span>}
+          {errors.email && <span className="pt-2">{errors.email.message}</span>}
         </div>
-        <div className="flex flex-col space-y-2">
+        <div className="flex flex-col ">
+          <div className="label pb-1">
+            <span className="label-text">Contraseña</span>
+          </div>
           <Controller
             name="password"
             control={control}
@@ -111,18 +115,23 @@ const SignUpEmailForm: FC = () => {
               <input
                 {...field}
                 type="password"
-                className="input w-full max-w-xs"
+                className="input w-full max-w-xs border-secondary bg-opacity-20 bg-primary"
                 placeholder="Password"
                 disabled={isPending}
               />
             )}
           />
-          {errors.password && <span>{errors.password.message}</span>}
+          {errors.password && (
+            <span className="pt-2">{errors.password.message}</span>
+          )}
         </div>
-        <button type="submit" disabled={isPending} className="btn ">
-          {isPending ? "Signing up..." : "Sign up"}
+        <button
+          type="submit"
+          disabled={isPending}
+          className="btn btn-accent text-white shadow-[0px_0px_30px_rgba(123,44,191,0.8)] hover:shadow-[0px_0px_30px_rgba(123,44,191,0.8)]"
+        >
+          Ingresar
         </button>
-        {errors.root && <span>{errors.root.message}</span>}
       </form>
     </>
   );
