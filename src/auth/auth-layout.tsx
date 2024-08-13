@@ -8,12 +8,11 @@ export interface AuthLayoutProps {
 
 export function AuthLayout({ children }: AuthLayoutProps): React.JSX.Element {
   return (
-    <div className="min-h-screen flex flex-col justify-center">
-      {/* add image logo centered*/}
+    <div className="min-h-screen flex flex-col justify-center bg-gradient-to-br from-[#8E61EC]/40 from-10%">
       <div className="flex justify-center">
         <Image src={PplayLogo} alt="PPlay logo" width={200} height={200} />
       </div>
-      <div className=" flex justify-center pt-8">
+      <div className=" flex justify-center pt-8 ">
         <div className="max-w-420px">{children}</div>
       </div>
     </div>
