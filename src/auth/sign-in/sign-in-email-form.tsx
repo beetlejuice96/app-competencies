@@ -108,7 +108,7 @@ const SignInEmailForm = () => {
         disabled={isPending}
         className="btn btn-accent text-white shadow-[0px_0px_30px_rgba(123,44,191,0.8)] hover:shadow-[0px_0px_30px_rgba(123,44,191,0.8)]"
       >
-        Iniciar sesión
+        Ingresar
       </button>
     </form>
   );
