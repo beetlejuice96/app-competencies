@@ -1,11 +1,13 @@
 "use client";
 
-import { config } from "@/config";
-import UseUser from "@/hooks/use-user";
-import { logger } from "@/lib/default-logger";
-import { paths } from "@/paths";
-import { useRouter } from "next/navigation";
 import React, { Fragment, useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+
+import UseUser from "@/hooks/use-user";
+
+import { logger } from "@/lib/default-logger";
+
+import { paths } from "@/paths";
 
 export interface AuthGuardProps {
   children: React.ReactNode;

@@ -1,5 +1,3 @@
-import SignOut from "@/auth/sign-out/sign-out";
-
 export default function Page(): React.JSX.Element {
   return (
     <div className="w-full h-full flex flex-col justify-center items-center space-y-2">
@@ -34,8 +32,6 @@ export default function Page(): React.JSX.Element {
           </div>
         </div>
       </div> */}
-
-      <SignOut />
     </div>
   );
 }
