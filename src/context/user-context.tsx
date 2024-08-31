@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import type { Session } from "@supabase/supabase-js";
 
 import type { User } from "@/types/user";
-
 import { logger } from "@/lib/default-logger";
 import { createClient as createSupabaseClient } from "@/lib/supabase/client";
 
@@ -39,6 +38,7 @@ export function UserProvider({
   React.useEffect(() => {
     function handleInitialSession(session: Session | null): void {
       const user = session?.user;
+
       //TODO: fijarme de como reemplazar este codigo ya que se repite en handleSignedIn
       setState((prev) => ({
         ...prev,
