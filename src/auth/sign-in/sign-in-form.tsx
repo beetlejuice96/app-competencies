@@ -8,18 +8,19 @@ import { paths } from "@/paths";
 import { toast } from "@/core/toaster";
 import SignInEmailForm from "./sign-in-email-form";
 import SignInPhoneForm from "./sign-in-phone-form";
-import { FaGoogle } from "react-icons/fa";
+import { FaDiscord, FaGoogle } from "react-icons/fa";
 import { MdOutlineEmail, MdOutlinePhone } from "react-icons/md";
 import Link from "next/link";
 
 interface OAuthProvider {
-  id: "google";
+  id: "google" | "discord";
   name: string;
   logo: React.ReactNode;
 }
 
 const oAuthProviders = [
   { id: "google", name: "Google", logo: <FaGoogle size={20} /> },
+  { id: "discord", name: "Discord", logo: <FaDiscord size={20} /> },
 ] satisfies OAuthProvider[];
 
 const schema = zod.object({

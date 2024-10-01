@@ -7,17 +7,18 @@ import { toast } from "@/core/toaster";
 import Image from "next/image";
 import SignUpEmailForm from "./sign-up-email-form";
 import SignUpPhoneForm from "./sign-up-phone-form";
-import { FaGoogle } from "react-icons/fa";
+import { FaDiscord, FaGoogle } from "react-icons/fa";
 import { MdOutlineEmail, MdOutlinePhone } from "react-icons/md";
 import Link from "next/link";
 interface OAuthProvider {
-  id: "google";
+  id: "google" | "discord";
   name: string;
   logo: React.ReactNode;
 }
 
 const oAuthProviders = [
   { id: "google", name: "Google", logo: <FaGoogle size={20} /> },
+  { id: "discord", name: "Discord", logo: <FaDiscord size={20} /> },
 ] satisfies OAuthProvider[];
 
 const SignUpForm: React.FC = () => {
@@ -82,7 +83,7 @@ const SignUpForm: React.FC = () => {
               disabled={isPending}
             >
               <MdOutlineEmail size={20} />
-              Inicia sesion con Email
+              Registrar con Email
             </button>
           )}
           {oAuthProviders.map((provider) => (
@@ -92,7 +93,7 @@ const SignUpForm: React.FC = () => {
               onClick={() => onAuth(provider.id)}
               disabled={isPending}
             >
-              {provider.logo} Inicia sesion con {provider.name}
+              {provider.logo} Registrar con {provider.name}
             </button>
           ))}
         </div>
