@@ -6,12 +6,33 @@ const verifyAuthenticatedOptions = (
 ): Array<INavItem> =>
   isAuthenticated
     ? [
-        { label: "Home", href: "/platform" },
         { label: "Perfil", href: "/me/profile" },
+        {
+          label: "My inscriptions",
+          href: "/me/inscriptions",
+        },
       ]
-    : [{ label: "Login", href: paths.auth.signIn }];
+    : [];
 
 export const navItems = (isAuthenticated: boolean): Array<INavItem> => {
   const authenticatedOptions = verifyAuthenticatedOptions(isAuthenticated);
-  return [...authenticatedOptions];
+  return [
+    {
+      label: "Home",
+      href: "/home",
+    },
+    ...authenticatedOptions,
+    {
+      label: "Tournaments",
+      href: "/tournaments",
+    },
+    {
+      label: "Calendar",
+      href: "/calendar",
+    },
+    {
+      label: "FAQ",
+      href: "/faq",
+    },
+  ];
 };

@@ -1,6 +1,6 @@
 import GuestGuard from "@/auth/guest-guard";
 import { paths } from "@/paths";
-import NavBar from "@/platform/components/navbar/navbar";
+import NavBar from "@/platform/components/navbar/nav-bar";
 import Link from "next/link";
 
 const LinkButton = ({
@@ -33,7 +33,6 @@ export default async function Landing() {
               Welcome, <strong>Guest</strong>!
             </div>
           </div>
-
           <div className="flex gap-2 text-sm mt-1">
             <div className="flex gap-2 text-sm mt-1">
               <LinkButton href={paths.auth.signIn}>Login</LinkButton>
