@@ -1,5 +1,6 @@
 import GuestGuard from "@/auth/guest-guard";
 import { paths } from "@/paths";
+import NavBar from "@/platform/components/navbar/navbar";
 import Link from "next/link";
 
 const LinkButton = ({
@@ -23,7 +24,8 @@ const LinkButton = ({
 
 export default async function Landing() {
   return (
-    <GuestGuard>
+    // <GuestGuard>
+    <NavBar>
       <main className="flex min-h-screen flex-col items-center justify-between p-24">
         <div>
           <div>
@@ -40,6 +42,7 @@ export default async function Landing() {
           </div>
         </div>
       </main>
-    </GuestGuard>
+    </NavBar>
+    // </GuestGuard>
   );
 }

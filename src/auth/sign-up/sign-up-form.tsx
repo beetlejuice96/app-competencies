@@ -32,7 +32,7 @@ const SignUpForm: React.FC = () => {
         paths.auth.callback.pkce,
         window.location.origin
       );
-      redirectToUrl.searchParams.set("next", paths.platform.start);
+      redirectToUrl.searchParams.set("next", paths.home);
 
       const { data, error } = await supabaseClient.auth.signInWithOAuth({
         provider: providerId,

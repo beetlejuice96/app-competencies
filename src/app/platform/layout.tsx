@@ -1,17 +1,12 @@
 import { FC } from "react";
 import AuthGuard from "@/auth/auth-guard";
-import PlatformLayout from "@/platform/platform-layout";
 
 interface LayoutProps {
   children: React.ReactNode;
 }
 
 const Layout: FC<LayoutProps> = ({ children }) => {
-  return (
-    <AuthGuard>
-      <PlatformLayout>{children}</PlatformLayout>
-    </AuthGuard>
-  );
+  return <AuthGuard>{children}</AuthGuard>;
 };
 
 export default Layout;

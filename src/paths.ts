@@ -10,7 +10,7 @@ export const paths = {
       pkce: "/auth/callback",
     },
   },
-  platform: {
-    start: "/platform",
-  },
+  // platform: {
+  //   start: "/platform",
+  // },
 };
