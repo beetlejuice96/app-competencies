@@ -26,7 +26,7 @@ const NavBar: React.FC<NavBarProps> = ({ children }: NavBarProps) => {
       <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex flex-col">
         {/* Navbar */}
-        <div className="navbar flex justify-between pt-4 pb-14">
+        <div className="navbar flex justify-between pt-2">
           {/* <div className="lg:hidden"> */}
           <Image src={PPlayLogo} alt="PPlay logo" width={30} height={30} />
           <label
