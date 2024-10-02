@@ -8,7 +8,7 @@ export const NavItem: React.FC<INavItem> = ({
 }) => {
   return (
     <li className="nav-item">
-      <a className="nav-link" href={href} onClick={onClick}>
+      <a className="nav-link " href={href} onClick={onClick}>
         {label}
       </a>
     </li>

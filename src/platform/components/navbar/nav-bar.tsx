@@ -22,12 +22,11 @@ const NavBar: React.FC<NavBarProps> = ({ children }: NavBarProps) => {
   const { user } = UseUser();
   const NAV_ITEMS = navItems(!!user);
   return (
-    <div className="drawer drawer-end">
+    <div className="drawer drawer-end bg-primary text-white">
       <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex flex-col">
         {/* Navbar */}
         <div className="navbar flex justify-between pt-2">
-          {/* <div className="lg:hidden"> */}
           <Image src={PPlayLogo} alt="PPlay logo" width={30} height={30} />
           <label
             htmlFor="my-drawer-3"
@@ -36,21 +35,7 @@ const NavBar: React.FC<NavBarProps> = ({ children }: NavBarProps) => {
           >
             <Image src={BurgerIcon} alt="burger icon" width={21} height={18} />
           </label>
-          {/* </div> */}
-          {/* add avatar */}
-          {/* TODO: crear tabla de profile para poder cargar la imagen del user */}
-          {/* <div className="avatar">
-            <div className="rounded-full w-10 h-10">
-              <Image
-                src={user?.avatar ?? "/avatar.png"}
-                alt="user avatar"
-                width={40}
-                height={40}
-              />
-            </div>
-          </div> */}
         </div>
-        {/* Page content here */}
         {children}
       </div>
       <div className="drawer-side">
@@ -59,7 +44,7 @@ const NavBar: React.FC<NavBarProps> = ({ children }: NavBarProps) => {
           aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
-        <ul className="menu bg-base-200 min-h-full w-80 p-4">
+        <ul className="menu bg-primary min-h-full w-80 p-4">
           <label htmlFor="my-drawer-3" className="btn btn-square btn-ghost">
             <svg
               xmlns="http://www.w3.org/2000/svg"

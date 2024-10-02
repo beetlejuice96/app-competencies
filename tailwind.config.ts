@@ -27,20 +27,19 @@ const config: Config = {
     themes: [
       {
         pocketplay: {
-          primary: "#8b5cf6", // Purple for primary elements
-          secondary: "#6b21a8", // Darker purple for secondary elements
-          accent: "#A15FD4", // Light purple for accents
-          neutral: "#1f2937", // Dark background
-          "base-100": "#0F0723", // Even darker background for contrast
-          info: "#3b82f6", // Blue for informational elements
-          success: "#10b981", // Green for success messages
-          warning: "#f59e0b", // Yellow for warnings
-          error: "#ef4444", // Red for errors
+          primary: "#100C26", // Dark navy blue
+          secondary: "#342A67", // Deep purple
+          accent: "#675AB3", // Medium purple
+          neutral: "#7E73C9", // Light purple
+          "base-100": "#EDEFF0", // Very light gray (almost white)
+          info: "#3b82f6", // Keeping the original blue for info
+          success: "#10b981", // Keeping the original green for success
+          warning: "#f59e0b", // Keeping the original yellow for warning
+          error: "#ef4444", // Keeping the original red for error
+          "base-content": "#100C26", // Using the darkest color for main text
+          "neutral-content": "#EDEFF0", // Using the lightest color for neutral text
 
-          "base-content": "#ffffff", // Color de texto principal
-          "neutral-content": "#ffffff", // Color de texto para elementos neutrales
-
-          // Custom properties
+          // Custom properties (keeping them as they were)
           "--rounded-box": "0.5rem",
           "--rounded-btn": "0.3rem",
           "--rounded-badge": "1.9rem",

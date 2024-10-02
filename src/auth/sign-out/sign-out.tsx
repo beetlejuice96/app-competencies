@@ -26,7 +26,7 @@ export default function SignOut() {
     }
   }, [supabaseClient]);
   return (
-    <button className="bg-primary" onClick={handleSignOut}>
+    <button className="bg-secondary" onClick={handleSignOut}>
       Logout
     </button>
   );
