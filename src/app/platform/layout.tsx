@@ -1,5 +1,5 @@
-import AuthGuard from "@/auth/auth-guard";
 import { FC } from "react";
+import AuthGuard from "@/auth/auth-guard";
 
 interface LayoutProps {
   children: React.ReactNode;

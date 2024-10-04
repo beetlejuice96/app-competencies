@@ -6,6 +6,7 @@ import { useCallback, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const schema = zod.object({
   phone: zod.string().min(1, { message: "Phone is required" }),
@@ -61,30 +62,34 @@ const SignInPhoneForm = () => {
 
   return (
     <>
-      <h1 className="text-2xl font-bold text-center" style={{ color: "black" }}>
-        Sign in with phone
-      </h1>
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col space-y-4"
       >
-        <div className="flex flex-col space-y-2">
+        <div className="flex flex-col">
+          <div className="label pb-1">
+            <span className="label-text">Teléfono</span>
+          </div>
           <Controller
             name="phone"
             control={control}
             render={({ field }) => (
               <input
                 {...field}
-                type="phone"
-                className="input w-full max-w-xs"
+                type="tel"
+                className="input w-full max-w-xs border-secondary bg-opacity-20 bg-primary"
                 placeholder="Phone"
+                autoComplete="off"
                 disabled={isPending}
               />
             )}
           />
-          {errors.phone && <span>{errors.phone.message}</span>}
+          {errors.phone && <span className="pt-2">{errors.phone.message}</span>}
         </div>
-        <div className="flex flex-col space-y-2">
+        <div className="flex flex-col">
+          <div className="label pb-1">
+            <span className="label-text">Contraseña</span>
+          </div>
           <Controller
             name="password"
             control={control}
@@ -92,16 +97,23 @@ const SignInPhoneForm = () => {
               <input
                 {...field}
                 type="password"
-                className="input w-full max-w-xs"
+                className="input w-full max-w-xs border-secondary bg-opacity-20 bg-primary"
+                autoComplete="off"
                 placeholder="Password"
                 disabled={isPending}
               />
             )}
           />
-          {errors.password && <span>{errors.password.message}</span>}
+          {errors.password && (
+            <span className="pt-2">{errors.password.message}</span>
+          )}
         </div>
-        <button type="submit" disabled={isPending}>
-          Sign in
+        <button
+          type="submit"
+          disabled={isPending}
+          className="btn btn-accent text-white shadow-[0px_0px_30px_rgba(123,44,191,0.8)] hover:shadow-[0px_0px_30px_rgba(123,44,191,0.8)]"
+        >
+          Ingresar
         </button>
       </form>
     </>

@@ -60,7 +60,7 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
     return NextResponse.json({ error: "Something went wrong" });
   }
 
-  const next = searchParams.get("next") || paths.platform.start;
+  const next = searchParams.get("next") || paths.home;
 
   return NextResponse.redirect(new URL(next, origin));
 }

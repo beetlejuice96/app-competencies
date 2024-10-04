@@ -1,9 +1,11 @@
 "use client";
 
-import { createClient as createSupabaseClient } from "@/lib/supabase/client";
-import { SupabaseClient } from "@supabase/supabase-js";
 import { useCallback, useState } from "react";
+import { SupabaseClient } from "@supabase/supabase-js";
+
+import { createClient as createSupabaseClient } from "@/lib/supabase/client";
 import { logger } from "@/lib/default-logger";
+
 export default function SignOut() {
   const [supabaseClient] = useState<SupabaseClient>(createSupabaseClient());
 
@@ -24,10 +26,7 @@ export default function SignOut() {
     }
   }, [supabaseClient]);
   return (
-    <button
-      className="text-black/30 hover:text-white transition duration-100 ease-in-out"
-      onClick={handleSignOut}
-    >
+    <button className="bg-secondary" onClick={handleSignOut}>
       Logout
     </button>
   );
