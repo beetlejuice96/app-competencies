@@ -13,7 +13,7 @@ export function AuthLayout({ children }: AuthLayoutProps): React.JSX.Element {
         <Image src={PplayLogo} alt="PPlay logo" width={200} height={200} />
       </div>
       <div className=" flex justify-center pt-8">
-        <div className="min-w-96">{children}</div>
+        <div>{children}</div>
       </div>
     </div>
   );
