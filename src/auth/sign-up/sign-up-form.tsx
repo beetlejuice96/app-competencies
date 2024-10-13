@@ -64,15 +64,12 @@ const SignUpForm: React.FC = () => {
       if (providersAuthorized.includes(providerId as Provider)) {
         setIsPending(true);
         const siteUrl = getSiteURL();
-
         const redirectToUrl = new URL(paths.auth.callback.pkce, siteUrl);
         redirectToUrl.searchParams.set("next", paths.home);
-
         const { data, error } = await supabaseClient.auth.signInWithOAuth({
           provider: providerId as ProviderSupabase,
           options: { redirectTo: redirectToUrl.href },
         });
-
         if (error) {
           setIsPending(false);
           toast.error(error.message);

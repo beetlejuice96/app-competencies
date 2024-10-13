@@ -7,6 +7,7 @@ const config: Config = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/auth/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/platform/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/core/**/*.{js,ts,jsx,tsx,mdx}",
     // add all directories that contain  components with css classes
   ],
   theme: {
