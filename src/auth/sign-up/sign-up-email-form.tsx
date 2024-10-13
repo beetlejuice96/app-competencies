@@ -5,6 +5,8 @@ import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
 import { paths } from "@/paths";
+import { BiLoader } from "react-icons/bi";
+import { off } from "process";
 
 //TODO: hacer que repita la contrasenia
 const schema = zod.object({
@@ -78,6 +80,13 @@ const SignUpEmailForm: FC = () => {
     },
     [supabaseClient, router, setError]
   );
+  if (isPending) {
+    return (
+      <div className="flex flex-col items-center justify-center w-full h-full text-primary">
+        <span className="loading loading-dots loading-lg" />
+      </div>
+    );
+  }
 
   return (
     <>
@@ -96,7 +105,7 @@ const SignUpEmailForm: FC = () => {
               <input
                 {...field}
                 type="email"
-                className="input w-full max-w-xs border-secondary bg-opacity-20 bg-primary"
+                className="input w-full border-secondary bg-opacity-20 bg-primary"
                 placeholder="Email"
                 disabled={isPending}
               />
@@ -115,7 +124,7 @@ const SignUpEmailForm: FC = () => {
               <input
                 {...field}
                 type="password"
-                className="input w-full max-w-xs border-secondary bg-opacity-20 bg-primary"
+                className="input w-full border-secondary bg-opacity-20 bg-primary"
                 placeholder="Password"
                 disabled={isPending}
               />
@@ -130,7 +139,7 @@ const SignUpEmailForm: FC = () => {
           disabled={isPending}
           className="btn btn-accent text-white shadow-[0px_0px_30px_rgba(123,44,191,0.8)] hover:shadow-[0px_0px_30px_rgba(123,44,191,0.8)]"
         >
-          Ingresar
+          Continuar
         </button>
       </form>
     </>

@@ -1,14 +1,15 @@
 import { IoIosArrowForward } from "react-icons/io";
 
 interface ButtonAuthProviderProps {
-  provider: string;
   logo: React.ReactNode;
+  text: string;
   onClick: () => void;
 }
 
 const ButtonAuthProvider: React.FC<ButtonAuthProviderProps> = ({
-  provider,
+  // provider,
   onClick,
+  text,
   logo,
 }: ButtonAuthProviderProps) => {
   return (
@@ -16,7 +17,7 @@ const ButtonAuthProvider: React.FC<ButtonAuthProviderProps> = ({
       className="btn btn-primary w-full justify-between"
       onClick={onClick}
     >
-      {logo} Registrate con {provider} <IoIosArrowForward size={20} />
+      {logo} {text} <IoIosArrowForward size={20} />
     </button>
   );
 };

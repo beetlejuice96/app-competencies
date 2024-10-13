@@ -2,18 +2,17 @@
 
 import { useCallback, useState } from "react";
 import { createClient as createSupabaseClient } from "@/lib/supabase/client";
+import { Provider as ProviderSupabase } from "@supabase/supabase-js";
 import Link from "next/link";
-import { paths } from "@/paths";
-import { toast } from "@/core/toaster";
-import SignUpEmailForm from "./sign-up-email-form";
-import SignUpPhoneForm from "./sign-up-phone-form";
 import { FaGoogle } from "react-icons/fa";
 import { MdOutlineEmail, MdOutlinePhone } from "react-icons/md";
 import { AiFillDiscord } from "react-icons/ai";
-import { Provider as ProviderSupabase } from "@supabase/supabase-js";
-
-import ButtonAuthProvider from "../components/button-auth-provider";
+import { paths } from "@/paths";
+import { toast } from "@/core/toaster";
 import Modal from "@/core/modal";
+import SignUpEmailForm from "./sign-up-email-form";
+import SignUpPhoneForm from "./sign-up-phone-form";
+import ButtonAuthProvider from "../components/button-auth-provider";
 interface OAuthProvider {
   id: "google" | "discord" | "email" | "phone";
   name: string;
@@ -61,7 +60,6 @@ const SignUpForm: React.FC = () => {
   const onAuth = useCallback(
     async (providerId: OAuthProvider["id"]): Promise<void> => {
       const providersAuthorized = [Provider.DISCORD, Provider.GOOGLE];
-
       if (providersAuthorized.includes(providerId as Provider)) {
         setIsPending(true);
         const redirectToUrl = new URL(
@@ -80,7 +78,6 @@ const SignUpForm: React.FC = () => {
           toast.error(error.message);
           return;
         }
-
         window.location.href = data.url;
       }
     },
@@ -104,20 +101,22 @@ const SignUpForm: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center w-full h-full">
+    <div className="flex flex-col items-center justify-center w-full h-full text-white">
       <h1 className="text-2xl font-bold text-center">Bienvenido!</h1>
       <p className="text-center text-sm ">
         Hola! necesitas registrarte para ingresar
       </p>
       <div className="pt-8 space-y-4 w-full">
         <div className="card bg-accent h-40 shadow-xl gap-1">
-          <h2 className="card-title justify-center">Registrate con Discord</h2>
+          <h2 className="card-title justify-center m-1">
+            Registrate con Discord
+          </h2>
           <figure>
             <AiFillDiscord size={60} />
           </figure>
           <div className="card-actions items-center justify-center">
             <button
-              className="btn btn-primary w-44"
+              className="btn btn-white w-44"
               onClick={() => onAuth(Provider.DISCORD)}
               disabled={isPending}
             >
@@ -128,12 +127,12 @@ const SignUpForm: React.FC = () => {
 
         <div className="flex flex-col items-center w-full space-y-2">
           <ButtonAuthProvider
-            provider={oAuthProviders[Provider.GOOGLE].name}
+            text={`Registrate con ${oAuthProviders[Provider.GOOGLE].name}`}
             onClick={() => onAuth(Provider.GOOGLE)}
             logo={oAuthProviders[Provider.GOOGLE].logo}
           />
           <ButtonAuthProvider
-            provider={oAuthProviders[Provider.EMAIL].name}
+            text={`Registrate con ${oAuthProviders[Provider.EMAIL].name}`}
             onClick={() =>
               openModal({
                 provider: Provider.EMAIL,
@@ -143,7 +142,7 @@ const SignUpForm: React.FC = () => {
             logo={oAuthProviders[Provider.EMAIL].logo}
           />
           <ButtonAuthProvider
-            provider={oAuthProviders[Provider.PHONE].name}
+            text={`Registrate con ${oAuthProviders[Provider.PHONE].name}`}
             onClick={() =>
               openModal({
                 provider: Provider.PHONE,
@@ -161,7 +160,6 @@ const SignUpForm: React.FC = () => {
           </Link>
         </div>
       </div>
-      {/* modal to show the sign up form */}
       <Modal id="modal-auth-provider">
         {open && open.provider === Provider.EMAIL ? (
           <SignUpEmailForm />
