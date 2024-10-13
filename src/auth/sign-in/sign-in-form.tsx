@@ -14,6 +14,7 @@ import Modal from "@/core/modal";
 import SignInEmailForm from "./sign-in-email-form";
 import SignInPhoneForm from "./sign-in-phone-form";
 import ButtonAuthProvider from "../components/button-auth-provider";
+import { getSiteURL } from "@/lib/get-site-url";
 
 interface OAuthProvider {
   id: "google" | "discord" | "email" | "phone";
@@ -66,11 +67,8 @@ const SignInForm: FC = () => {
 
       if (providersAuthorized.includes(providerId as Provider)) {
         setIsPending(true);
-
-        const redirectToUrl = new URL(
-          paths.auth.callback.pkce,
-          window.location.origin
-        );
+        const siteUrl = getSiteURL();
+        const redirectToUrl = new URL(paths.auth.callback.pkce, siteUrl);
         redirectToUrl.searchParams.set("next", paths.home);
 
         const { data, error } = await supabaseClient.auth.signInWithOAuth({

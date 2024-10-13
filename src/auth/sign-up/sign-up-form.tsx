@@ -13,6 +13,7 @@ import Modal from "@/core/modal";
 import SignUpEmailForm from "./sign-up-email-form";
 import SignUpPhoneForm from "./sign-up-phone-form";
 import ButtonAuthProvider from "../components/button-auth-provider";
+import { getSiteURL } from "@/lib/get-site-url";
 interface OAuthProvider {
   id: "google" | "discord" | "email" | "phone";
   name: string;
@@ -62,10 +63,9 @@ const SignUpForm: React.FC = () => {
       const providersAuthorized = [Provider.DISCORD, Provider.GOOGLE];
       if (providersAuthorized.includes(providerId as Provider)) {
         setIsPending(true);
-        const redirectToUrl = new URL(
-          paths.auth.callback.pkce,
-          window.location.origin
-        );
+        const siteUrl = getSiteURL();
+
+        const redirectToUrl = new URL(paths.auth.callback.pkce, siteUrl);
         redirectToUrl.searchParams.set("next", paths.home);
 
         const { data, error } = await supabaseClient.auth.signInWithOAuth({
